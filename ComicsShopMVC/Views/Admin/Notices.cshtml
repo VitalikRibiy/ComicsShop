@@ -1,0 +1,83 @@
+﻿@model List<NotificationDto>
+
+@{
+    ViewBag.Title = "Повідомлення";
+}
+
+<div class="handler padding">
+    <ul class="list-inline">
+        <li class="list-inline-item handler-item">
+            <a asp-controller="Admin" asp-action="Books" class="btn">Comics</a>
+        </li>
+        <li class="list-inline-item handler-item">
+            <a asp-controller="Admin" asp-action="Authors" class="btn">Authors</a>
+        </li>
+        <li class="list-inline-item handler-item">
+            <a asp-controller="Admin" asp-action="Categories" class="btn">Categories</a>
+        </li>
+        <li class="list-inline-item handler-item">
+            <a asp-controller="Admin" asp-action="Customers" class="btn">Clients</a>
+        </li>
+        <li class="list-inline-item handler-item">
+            <a asp-controller="Admin" asp-action="Orders" class="btn">Orders</a>
+        </li>
+        <li class="list-inline-item handler-item">
+            <a asp-controller="Admin" asp-action="Notices" class="btn">Message</a>
+        </li>
+    </ul>
+</div>
+<div>
+    <h2>Messages</h2>
+    @if (Model.Any())
+    {
+        <form>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Theme</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.Count; i++)
+                    {
+                        <tr>
+                            <td>
+                                <a asp-controller="admin" asp-action="NoticeDetails" asp-route-id="@Model[i].Id">
+                                    @Model[i].Id
+                                </a>
+                            </td>
+                            <td>@Model[i].Name</td>
+                            <td>
+                                @Model[i].Email
+                            </td>
+                            <td>
+                                @Model[i].Subject
+                            </td>
+                            <td>
+                            </td>
+                            <td>
+                                <div>
+                                    <button type="submit" class="btn btn-danger m-1 form-submit"
+                                            asp-controller="admin" asp-action="DeleteNotice" asp-route-id="@Model[i].Id">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </form>
+    }
+    else
+    {
+        <p>
+            You have no messages
+        </p>
+    }
+</div>
