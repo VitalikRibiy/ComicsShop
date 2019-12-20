@@ -1,0 +1,30 @@
+﻿@model CallbackDto
+
+@{
+    ViewBag.Title = "Contacts";
+}
+
+<hr />
+<div>
+    <h2 class="centered">Напишіть нам</h2>
+    <form asp-controller="home" asp-action="AddCallback">
+        <div class="form-row">
+            <div class="col form-group">
+                <input asp-for="Name" class="form-control m-2" placeholder="Write your Name" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+                <input asp-for="Email" class="form-control m-2" placeholder="Email" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+                <input asp-for="Subject" class="form-control m-2" placeholder="Theme" />
+                <span asp-validation-for="Subject" class="text-danger"></span>
+            </div>
+            <div class="col form-group">
+                <textarea asp-for="Text" class="form-control m-2" placeholder="Description"></textarea>
+                <span asp-validation-for="Text" class="text-danger"></span>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-danger" id="send"
+                onclick="return alert('Your message was sucesfully sent')">
+            Надіслати
+        </button>
+    </form>
+</div>
